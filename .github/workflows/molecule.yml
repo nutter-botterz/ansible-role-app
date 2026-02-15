@@ -3,9 +3,7 @@ name: Molecule Test
 on:
   push:
     branches:
-      - main
-      - beta
-      - alpha
+      - "!main"
       - "!dependabot/**"
   pull_request:
 
