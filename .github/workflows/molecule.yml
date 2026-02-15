@@ -39,6 +39,7 @@ jobs:
           MOLECULE_DISTRO: ${{ matrix.image }}
           HOME: ${{ runner.temp }}
           XDG_CONFIG_HOME: ${{ runner.temp }}/config
+          ANSIBLE_ASYNC_DIR: ${{ runner.temp }}/.ansible_async
 
       - name: Destroy molecule instance
         run: molecule destroy
@@ -46,3 +47,4 @@ jobs:
           MOLECULE_DISTRO: ${{ matrix.image }}
           HOME: ${{ runner.temp }}
           XDG_CONFIG_HOME: ${{ runner.temp }}/config
+          ANSIBLE_ASYNC_DIR: ${{ runner.temp }}/.ansible_async
