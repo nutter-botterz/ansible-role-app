@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: "20"
 
-      - run: npm install -g semantic-release
+      - run: npm install -g semantic-release conventional-changelog-conventionalcommits
       - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
