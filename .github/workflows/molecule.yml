@@ -31,7 +31,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install molecule Docker driver
-        run: pip install "molecule-docker<2.0.0"
+        run: pip install "molecule-docker<2.0.0" "ansible-core<2.17"
 
       - name: Run molecule converge
         run: molecule converge
