@@ -37,4 +37,5 @@ jobs:
         run: molecule test
         env:
           MOLECULE_DISTRO: ${{ matrix.image }}
-          HOME: /root
+          HOME: ${{ runner.temp }}
+          XDG_CONFIG_HOME: ${{ runner.temp }}/config
