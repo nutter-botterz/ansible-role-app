@@ -1,0 +1,11 @@
+---
+# handlers file for ansible-role-app
+- name: restart app
+  ansible.builtin.service:
+    name: "{{ app_name }}"
+    state: restarted
+
+- name: reload app
+  ansible.builtin.service:
+    name: "{{ app_name }}"
+    state: reloaded

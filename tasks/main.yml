@@ -1,0 +1,40 @@
+---
+# tasks file for ansible-role-app
+- name: Ensure app directory exists
+  ansible.builtin.file:
+    path: "{{ app_directory }}"
+    state: directory
+    mode: '0755'
+
+- name: Ensure app user exists
+  ansible.builtin.user:
+    name: "{{ app_user }}"
+    system: yes
+    shell: /bin/false
+
+- name: Deploy application files
+  ansible.builtin.copy:
+    src: files/
+    dest: "{{ app_directory }}/"
+    owner: "{{ app_user }}"
+    group: "{{ app_user }}"
+    mode: '0644'
+
+- name: Install Python dependencies
+  ansible.builtin.pip:
+    requirements: "{{ app_directory }}/requirements.txt"
+    virtualenv: "{{ app_venv }}"
+    state: present
+
+- name: Configure systemd service
+  ansible.builtin.template:
+    src: app.service.j2
+    dest: /etc/systemd/system/{{ app_name }}.service
+    mode: '0644'
+  notify: restart app
+
+- name: Start and enable app service
+  ansible.builtin.service:
+    name: "{{ app_name }}"
+    state: started
+    enabled: yes

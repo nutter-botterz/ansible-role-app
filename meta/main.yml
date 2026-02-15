@@ -1,0 +1,27 @@
+---
+# meta file for ansible-role-app
+dependencies: []
+
+galaxy_info:
+  author: yourname
+  description: Ansible role for deploying Python applications
+  company: yourcompany
+  license: MIT
+  min_ansible_version: "2.9"
+  platforms:
+    - name: EL
+      versions:
+        - "7"
+        - "8"
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+    - name: Debian
+      versions:
+        - bullseye
+  galaxy_tags:
+    - python
+    - flask
+    - application
+    - deploy

@@ -1,0 +1,6 @@
+---
+# defaults file for ansible-role-app
+app_name: ansible-role-app
+app_version: "1.0.0"
+app_port: 5000
+app_env: production

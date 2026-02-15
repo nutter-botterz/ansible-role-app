@@ -1,0 +1,5 @@
+---
+# vars file for ansible-role-app
+app_directory: /opt/{{ app_name }}
+app_user: app
+app_venv: "{{ app_directory }}/venv"
