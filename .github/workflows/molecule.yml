@@ -34,7 +34,7 @@ jobs:
         run: pip install --force-reinstall "molecule==6.0.0" "molecule-docker<2.1.0" "ansible-core==2.16.0"
 
       - name: Run molecule converge
-        run: molecule converge
+        run: molecule converge --scenario-name default
         env:
           MOLECULE_DISTRO: ${{ matrix.image }}
           HOME: ${{ runner.temp }}
@@ -42,7 +42,7 @@ jobs:
           ANSIBLE_ASYNC_DIR: ${{ runner.temp }}/.ansible_async
 
       - name: Destroy molecule instance
-        run: molecule destroy
+        run: molecule destroy --scenario-name default
         env:
           MOLECULE_DISTRO: ${{ matrix.image }}
           HOME: ${{ runner.temp }}
