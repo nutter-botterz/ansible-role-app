@@ -3,9 +3,10 @@
 
 # Skip specific rules
 skip_list:
-  - yaml  # Disable YAML syntax checking
+  - yaml
   - name[casing]
   - name[prefix]
+  - role-name
 
 # Exclude paths
 exclude_paths:

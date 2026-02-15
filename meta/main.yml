@@ -3,9 +3,11 @@
 dependencies: []
 
 galaxy_info:
-  author: yourname
+  author: nutter-botterz
+  namespace: nutter_botterz
+  role_name: ansible_role_app
   description: Ansible role for deploying Python applications
-  company: yourcompany
+  company: ""
   license: MIT
   min_ansible_version: "2.9"
   platforms:
