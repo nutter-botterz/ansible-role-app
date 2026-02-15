@@ -1,14 +1,13 @@
 {
   "branches": ["main", "fix/*", "feature/*"],
+  "pluginConfig": {
+    "@semantic-release/github": {
+      "releaseNotes": false
+    }
+  },
   "plugins": [
     "@semantic-release/commit-analyzer",
-    "@semantic-release/release-notes-generator",
-    [
-      "@semantic-release/github",
-      {
-        "releaseNotes": false
-      }
-    ]
+    "@semantic-release/release-notes-generator"
   ],
   "preset": "conventionalcommits"
 }
