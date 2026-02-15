@@ -1,4 +1,9 @@
 ---
+# Supported platforms:
+#   - geerlingguy/docker-ubuntu2204-ansible:latest
+#   - geerlingguy/docker-almalinux9-ansible:latest
+#   - geerlingguy/docker-almalinux10-ansible:latest
+
 scenario:
   name: default
 
