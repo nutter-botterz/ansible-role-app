@@ -1,14 +1,19 @@
 ---
-scenario: name
+scenario:
+  name: default
+
 driver:
   name: docker
+
 platforms:
   - name: instance
-    image: geerlingguy/docker-ubuntu2204-ansible:latest
+    image: ${MOLECULE_DISTRO:-geerlingguy/docker-ubuntu2204-ansible:latest}
     pre_build_image: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
 provisioner:
   name: ansible
+
 verifier:
   name: ansible

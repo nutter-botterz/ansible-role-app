@@ -11,6 +11,16 @@ on:
 jobs:
   molecule:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - distro: ubuntu2204
+            image: geerlingguy/docker-ubuntu2204-ansible:latest
+          - distro: alma9
+            image: geerlingguy/docker-almalinux9-ansible:latest
+          - distro: alma10
+            image: geerlingguy/docker-almalinux10-ansible:latest
 
     steps:
       - name: Checkout code
@@ -21,9 +31,10 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
-        run: |
-          pip install molecule molecule-docker ansible-lint
+      - name: Install molecule Docker driver
+        run: pip install molecule-docker
 
       - name: Run molecule test
         run: molecule test
+        env:
+          MOLECULE_DISTRO: ${{ matrix.image }}
