@@ -39,3 +39,4 @@ jobs:
           MOLECULE_DISTRO: ${{ matrix.image }}
           HOME: ${{ runner.temp }}
           XDG_CONFIG_HOME: ${{ runner.temp }}/config
+          ALLOW_BROKEN_CONDITIONALS: "true"
