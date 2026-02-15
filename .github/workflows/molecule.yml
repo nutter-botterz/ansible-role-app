@@ -39,3 +39,10 @@ jobs:
           MOLECULE_DISTRO: ${{ matrix.image }}
           HOME: ${{ runner.temp }}
           XDG_CONFIG_HOME: ${{ runner.temp }}/config
+
+      - name: Destroy molecule instance
+        run: molecule destroy
+        env:
+          MOLECULE_DISTRO: ${{ matrix.image }}
+          HOME: ${{ runner.temp }}
+          XDG_CONFIG_HOME: ${{ runner.temp }}/config
