@@ -31,10 +31,10 @@ jobs:
           python-version: "3.11"
 
       - name: Install molecule Docker driver
-        run: pip install "molecule-docker<2.1.0"
+        run: pip install "molecule-docker<2.0.0"
 
       - name: Run molecule test
-        run: molecule test
+        run: molecule test --destroy=never
         env:
           MOLECULE_DISTRO: ${{ matrix.image }}
           HOME: ${{ runner.temp }}
