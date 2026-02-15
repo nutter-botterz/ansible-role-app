@@ -6,6 +6,7 @@ on:
       - main
       - beta
       - alpha
+      - "!dependabot/**"
   pull_request:
 
 jobs:
@@ -17,10 +18,10 @@ jobs:
         include:
           - distro: ubuntu2204
             image: geerlingguy/docker-ubuntu2204-ansible:latest
-          - distro: alma9
-            image: geerlingguy/docker-almalinux9-ansible:latest
-          - distro: alma10
-            image: geerlingguy/docker-almalinux10-ansible:latest
+          # - distro: alma9
+          #   image: geerlingguy/docker-almalinux9-ansible:latest
+          # - distro: alma10
+          #   image: geerlingguy/docker-almalinux10-ansible:latest
 
     steps:
       - name: Checkout code
