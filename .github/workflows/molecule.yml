@@ -2,9 +2,9 @@ name: Molecule Test
 
 on:
   push:
-    branches:
-      - "!main"
-      - "!dependabot/**"
+    branches-ignore:
+      - main
+      - dependabot/**
   pull_request:
 
 jobs:
