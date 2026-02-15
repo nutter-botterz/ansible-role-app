@@ -2,16 +2,8 @@
   "branches": [
     "main",
     {
-      "name": "beta",
-      "prerelease": "beta"
-    },
-    {
-      "name": "alpha",
-      "prerelease": "alpha"
-    },
-    {
-      "name": "next",
-      "prerelease": "next"
+      "name": "!(dependabot/**)",
+      "prerelease": true
     }
   ],
   "plugins": [
