@@ -16,4 +16,4 @@ exclude_paths:
   - .venv/
 
 # Use specific profile
-profile: minimal
+profile: min
