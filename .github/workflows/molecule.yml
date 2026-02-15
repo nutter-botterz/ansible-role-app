@@ -33,8 +33,8 @@ jobs:
       - name: Install molecule Docker driver
         run: pip install "molecule-docker<2.0.0"
 
-      - name: Run molecule test
-        run: molecule test --destroy=never
+      - name: Run molecule converge
+        run: molecule converge
         env:
           MOLECULE_DISTRO: ${{ matrix.image }}
           HOME: ${{ runner.temp }}
