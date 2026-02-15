@@ -1,7 +1,9 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
   tasks:
     - name: Include ansible-role-app
-      include_role:
+      ansible.builtin.include_role:
         name: ansible-role-app
