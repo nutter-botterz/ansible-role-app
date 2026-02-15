@@ -1,0 +1,29 @@
+name: Molecule Test
+
+on:
+  push:
+    branches:
+      - main
+      - beta
+      - alpha
+  pull_request:
+
+jobs:
+  molecule:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install molecule molecule-docker ansible-lint
+
+      - name: Run molecule test
+        run: molecule test
