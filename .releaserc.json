@@ -2,8 +2,16 @@
   "branches": [
     "main",
     {
-      "name": "!main",
-      "prerelease": "pre"
+      "name": "fix/*",
+      "prerelease": "fix"
+    },
+    {
+      "name": "feature/*",
+      "prerelease": "feature"
+    },
+    {
+      "name": "dependabot/**",
+      "prerelease": false
     }
   ],
   "pluginConfig": {
