@@ -1,5 +1,4 @@
 {
-  "branches": ["main"],
   "pluginConfig": {
     "@semantic-release/github": {}
   },
