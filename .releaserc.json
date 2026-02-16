@@ -10,7 +10,6 @@
       "prerelease": true
     }
   ],
-  "tagFormat": "{{branch}}.{{version}}",
   "pluginConfig": {
     "@semantic-release/github": {
       "releaseNotes": false
