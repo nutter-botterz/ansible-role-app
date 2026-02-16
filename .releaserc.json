@@ -1,10 +1,10 @@
 {
   "branches": [
     "main",
-    {
-      "name": "*",
-      "prerelease": true
-    }
+    "fix/*",
+    "feature/*",
+    "refactor/*",
+    "docs/*"
   ],
   "pluginConfig": {
     "@semantic-release/github": {}
