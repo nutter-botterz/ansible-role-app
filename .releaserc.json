@@ -1,15 +1,5 @@
 {
-  "branches": [
-    "main",
-    {
-      "name": "fix/*",
-      "prerelease": true
-    },
-    {
-      "name": "feature/*",
-      "prerelease": true
-    }
-  ],
+  "branches": ["main"],
   "pluginConfig": {
     "@semantic-release/github": {
       "releaseNotes": false
