@@ -1,13 +1,10 @@
 {
   "branches": [
     "main",
-    "*",
-    "!dependabot/**"
+    "*"
   ],
   "pluginConfig": {
-    "@semantic-release/github": {
-      "releaseNotes": false
-    }
+    "@semantic-release/github": {}
   },
   "plugins": [
     "@semantic-release/commit-analyzer",
