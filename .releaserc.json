@@ -1,5 +1,11 @@
 {
-  "branches": ["main"],
+  "branches": [
+    "main",
+    {
+      "name": "fix/*",
+      "prerelease": "alpha"
+    }
+  ],
   "pluginConfig": {
     "@semantic-release/github": {
       "releaseNotes": false
@@ -7,15 +13,7 @@
   },
   "plugins": [
     "@semantic-release/commit-analyzer",
-    "@semantic-release/release-notes-generator",
-    [
-      "@semantic-release/github",
-      {
-        "releaseNotes": false,
-        "prerelease": true,
-        "prereleaseBranches": ["*"]
-      }
-    ]
+    "@semantic-release/release-notes-generator"
   ],
   "preset": "conventionalcommits"
 }
