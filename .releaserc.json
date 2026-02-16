@@ -1,14 +1,8 @@
 {
   "branches": [
     "main",
-    {
-      "name": "dependabot/**",
-      "prerelease": false
-    },
-    {
-      "name": "!main",
-      "prerelease": true
-    }
+    "*",
+    "!dependabot/**"
   ],
   "pluginConfig": {
     "@semantic-release/github": {
