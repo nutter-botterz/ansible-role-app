@@ -1,19 +1,5 @@
 {
-  "branches": [
-    "main",
-    {
-      "name": "fix/*",
-      "prerelease": "fix"
-    },
-    {
-      "name": "feature/*",
-      "prerelease": "feature"
-    },
-    {
-      "name": "dependabot/**",
-      "prerelease": false
-    }
-  ],
+  "branches": ["main"],
   "pluginConfig": {
     "@semantic-release/github": {
       "releaseNotes": false
