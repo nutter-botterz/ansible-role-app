@@ -1,6 +1,16 @@
 {
-  "branches": ["main", "fix/*", "feature/*"],
-  "tagFormat": "${BRANCH}.${ENV.RELEASE_INDEX}",
+  "branches": [
+    "main",
+    {
+      "name": "fix/*",
+      "prerelease": true
+    },
+    {
+      "name": "feature/*",
+      "prerelease": true
+    }
+  ],
+  "tagFormat": "{{branch}}.{{version}}",
   "pluginConfig": {
     "@semantic-release/github": {
       "releaseNotes": false
