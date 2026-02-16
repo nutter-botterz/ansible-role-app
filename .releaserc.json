@@ -1,5 +1,6 @@
 {
   "branches": ["main", "fix/*", "feature/*"],
+  "tagFormat": "${BRANCH}.${ENV.RELEASE_INDEX}",
   "pluginConfig": {
     "@semantic-release/github": {
       "releaseNotes": false
