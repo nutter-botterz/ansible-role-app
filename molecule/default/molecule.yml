@@ -26,7 +26,7 @@ provisioner:
   env:
     ANSIBLE_ROLES_PATH: ${MOLECULE_PROJECT_DIRECTORY}/..
   options:
-    role: nutter_botterz.ansible_role_app
+    role: nutterbotterz.ansible_role_app
     
 verifier:
   name: ansible
