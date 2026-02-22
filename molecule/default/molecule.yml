@@ -6,6 +6,10 @@
 
 scenario:
   name: default
+  test_sequence:
+    - create
+    - converge
+    - destroy
 
 driver:
   name: docker
@@ -21,8 +25,6 @@ provisioner:
   name: ansible
   env:
     ANSIBLE_ROLES_PATH: ${MOLECULE_PROJECT_DIRECTORY}/..
-  options:
-    role: nutter_botterz.ansible_role_app
 
 verifier:
   name: ansible

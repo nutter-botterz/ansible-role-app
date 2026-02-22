@@ -33,9 +33,20 @@ jobs:
           python-version: "3.11"
 
       - name: Install molecule Docker driver
-        run: pip install molecule-docker
+        run: pip install --force-reinstall "molecule==6.0.0" "molecule-docker<2.1.0" "ansible-core==2.16.0"
 
-      - name: Run molecule test
-        run: molecule test
+      - name: Run molecule converge
+        run: molecule converge --scenario-name default
         env:
           MOLECULE_DISTRO: ${{ matrix.image }}
+          HOME: ${{ runner.temp }}
+          XDG_CONFIG_HOME: ${{ runner.temp }}/config
+          ANSIBLE_ASYNC_DIR: ${{ runner.temp }}/.ansible_async
+
+      - name: Destroy molecule instance
+        run: molecule destroy --scenario-name default
+        env:
+          MOLECULE_DISTRO: ${{ matrix.image }}
+          HOME: ${{ runner.temp }}
+          XDG_CONFIG_HOME: ${{ runner.temp }}/config
+          ANSIBLE_ASYNC_DIR: ${{ runner.temp }}/.ansible_async
