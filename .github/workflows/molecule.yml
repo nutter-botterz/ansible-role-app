@@ -3,9 +3,11 @@ name: Molecule Test
 on:
   push:
     branches:
-      - "!main"
-      - "!dependabot/**"
+      - main
   pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   molecule:
