@@ -1,114 +1,96 @@
-# Agent Commit Guide
+# AGENT.md - Implementing Fixes & Features
 
-Quick reference for how Jarvis commits code.
+This guide explains how to implement and contribute fixes/features to ansible-role-app.
 
-## When to Commit
+## Workflow Overview
 
-- After completing a logical unit of work
-- Before merging to main
-- When tests pass
+1. Create a feature/fix branch from `main`
+2. Make changes
+3. Test locally with molecule
+4. Push and open PR
+5. CI runs molecule tests + lint
+6. Merge to main
 
-## How to Commit
+## Branches
 
-### Single change:
-```bash
-git add <files>
-git commit -m "type(scope): description"
-```
+- `main` - Stable branch, only merge via PR
+- `fix/*` - Fix branches
+- `feature/*` - Feature branches
 
-### Interactive staging:
-```bash
-git add -p  # review hunks interactively
-git commit
-```
+## Making Changes
 
-## Commit Types
-
-| Type | Use for |
-|------|---------|
-| `feat` | New functionality |
-| `fix` | Bug fixes |
-| `docs` | README, comments, docs |
-| `style` | Formatting only |
-| `refactor` | Restructuring code |
-| `test` | Adding tests |
-| `chore` | Deps, build, CI |
-
-## Tips
-
-- Write imperative mood ("add" not "added")
-- Keep subject line under 50 chars
-- Body wrapped at 72 chars
-- Reference issues: `Closes #123`
-
-## Example Workflow
+### 1. Create a Branch
 
 ```bash
-# Make changes to files
-git status
-git add -A
-git commit -m "feat(auth): implement login flow
-
-- Add user model
-- Create login endpoint
-- Add session handling
-
-Closes #45"
-git push
-```
-
----
-
-# Release Process
-
-This project uses **semantic-release** with GitHub Actions for automated releases.
-
-## How Releases Work
-
-1. **Push to `main`** — Triggers a full release (production)
-2. **Push to prerelease branches** — Any branch that's not main creates prereleases
-3. **Semantic-release** analyzes commits since last release to determine version bump
-4. **Ansible role** is packaged and pushed to GHCR as a container image
-
-## Branch Strategy
-
-| Branch | Release Type |
-|--------|--------------|
-| `main` | Production release |
-| `!main` | Prerelease (e.g., `pre-beta`) |
-
-## Version Bumping
-
-Semantic-release automatically determines the version bump based on commit messages:
-
-| Commit Message | Version Bump |
-|----------------|--------------|
-| `fix:` | Patch (`1.0.0` → `1.0.1`) |
-| `feat:` | Minor (`1.0.0` → `1.1.0`) |
-| `feat!:`, `fix!:`, etc. | Major (`1.0.0` → `2.0.0`) |
-
-## Triggering a Release
-
-```bash
-# For production release (main branch)
 git checkout main
-git merge your-feature-branch
-git push origin main
-
-# For prerelease (beta branch)
-git checkout beta
-git merge your-feature-branch
-git push origin beta
+git pull origin main
+git checkout -b fix/your-fix-name
 ```
 
-## Release Outputs
+### 2. Run Tests Locally
 
-- **GitHub Release** — Created automatically (title is version only, e.g., `v1.2.0`)
-- **Ansible Role** — Available on GitHub Releases
+```bash
+# Install dependencies
+pip install molecule molecule-docker ansible-core==2.16.0
 
-## Important Notes
+# Run molecule test
+molecule test
 
-- **Don't specify versions** in commit messages — semantic-release determines the version
-- All conventional commits are collected since the last release
-- GitHub release title is just the version number (e.g., `v1.2.0`), no description
-- Role can be installed via `ansible-galaxy install <owner>.<repo>`
+# Or just converge (faster for dev)
+molecule converge
+```
+
+### 3. Add Tests for New Platforms
+
+Edit `.github/workflows/molecule.yml` to add distros:
+
+```yaml
+matrix:
+  include:
+    - distro: ubuntu2204
+      image: geerlingguy/docker-ubuntu2204-ansible:latest
+    - distro: alma9
+      image: docker.io/robinwalterfit/docker-almalinux9-ansible:latest
+```
+
+Also update `molecule/default/molecule.yml` comments to document supported platforms.
+
+### 4. Update Tasks
+
+Edit `tasks/main.yml` for role tasks.
+
+### 5. Commit & Push
+
+```bash
+git add .
+git commit -m "fix: description of change"
+git push origin fix/your-fix-name
+```
+
+### 6. Open Pull Request
+
+- Create PR on GitHub targeting `main`
+- CI will run: lint → molecule converge → molecule destroy
+- Review and merge
+
+## Release Process
+
+1. Merge to main
+2. Create git tag:
+   ```bash
+   git tag v1.0.1
+   git push origin v1.0.1
+   ```
+3. Release workflow runs automatically on tag push
+
+## Common Issues
+
+### Molecule "return code 2"
+- Check ANSIBLE_ROLES_PATH in molecule.yml
+- Ensure role name matches namespace in meta/main.yml
+- Use dynamic role name in converge.yml
+
+### Test Failures
+- Run `molecule converge` locally to debug
+- Check HOME and XDG_CONFIG_HOME env vars
+- Ensure Docker is running
