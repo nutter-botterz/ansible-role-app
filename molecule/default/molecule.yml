@@ -3,6 +3,7 @@
 #   - geerlingguy/docker-ubuntu2204-ansible:latest
 #   - geerlingguy/docker-almalinux9-ansible:latest
 #   - geerlingguy/docker-almalinux10-ansible:latest
+#   - docker.io/robinwalterfit/docker-almalinux9-ansible:latest
 
 scenario:
   name: default

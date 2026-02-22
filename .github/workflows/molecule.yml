@@ -18,8 +18,8 @@ jobs:
         include:
           - distro: ubuntu2204
             image: geerlingguy/docker-ubuntu2204-ansible:latest
-          # - distro: alma9
-          #   image: geerlingguy/docker-almalinux9-ansible:latest
+          - distro: alma9
+            image: docker.io/robinwalterfit/docker-almalinux9-ansible:latest
           # - distro: alma10
           #   image: geerlingguy/docker-almalinux10-ansible:latest
 
