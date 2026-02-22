@@ -3,7 +3,8 @@
   hosts: all
   vars:
     ansible_python_interpreter: /usr/bin/python3
+    role_name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY').split('/')[-2] }}"
   tasks:
-    - name: Include ansible-role-app
+    - name: Include role
       ansible.builtin.include_role:
-        name: ansible-role-app
+        name: "{{ role_name }}"
