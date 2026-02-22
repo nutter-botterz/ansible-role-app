@@ -2,10 +2,12 @@ name: Molecule Test
 
 on:
   push:
-    branches-ignore:
+    branches:
       - main
-      - dependabot/**
   pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   molecule:
